@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-echo "Hello world."
+require 'babelyoda'
+
+Babelyoda::CLI.run(ARGV)
