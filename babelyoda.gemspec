@@ -31,4 +31,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "term-ansicolor",  '~> 1.0', '>= 1.0.7'
   s.add_runtime_dependency "log4r-color",     '~> 1.2'
   s.add_runtime_dependency "claide",          '~> 0.2'
+  s.add_runtime_dependency "colored"
 end
