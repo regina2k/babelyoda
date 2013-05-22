@@ -27,12 +27,10 @@ module Babelyoda
       end
     end
 
-    def self.load
-      trace_spec = @spec.nil? && ::Rake.application.options.trace
-	    @spec ||= load_from_file(filename = FILENAME)
+    def self.load(filename = FILENAME)
+	    @spec ||= load_from_file(filename)
       if @spec
         @spec.plain_text_keys = true if @spec.plain_text_keys.nil?
-        @spec.dump if trace_spec && @spec
       end
 	    return @spec
     end

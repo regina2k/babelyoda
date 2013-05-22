@@ -1,7 +1,9 @@
-require 'awesome_print'
+require 'rake'
 
 module Babelyoda
 	module SpecificationLoader
+    FileList = ::Rake::FileList
+    
 		def self.included(klass)
 	    klass.extend ClassMethods
 	  end
@@ -16,14 +18,6 @@ module Babelyoda
 	    raise msg
   	end
 
-    def dump
-      unless ::Rake.application.options.trace
-      	ap self, :indent => -2
-      else
-      	p self
-      end
-    end
-    
     module ClassMethods
 
 		  def load_from_file(filename)

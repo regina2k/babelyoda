@@ -1,8 +1,8 @@
-require 'babelyoda/cli'
+require 'babelyoda/commands/base'
 require 'babelyoda/specification'
 
 module Babelyoda::Commands
-  class Init < Babelyoda::CLI
+  class Init < Base
     self.summary = 'Create a basic bootstrap Babelfile'
     
     def self.options

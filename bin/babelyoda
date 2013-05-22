@@ -2,4 +2,4 @@
 
 require 'babelyoda'
 
-Babelyoda::CLI.run(ARGV)
+Babelyoda::Commands::Base.run(ARGV)

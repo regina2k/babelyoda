@@ -259,11 +259,6 @@ namespace :babelyoda do
         
     namespace :remote do
       
-      desc "List remote keysets"
-      task :list do
-        ap spec.engine.list
-      end
-      
       desc "Drop remote keysets in KEYSETS"
       task :drop_keysets do
         if ENV['KEYSETS']
