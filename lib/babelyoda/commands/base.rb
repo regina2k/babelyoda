@@ -33,7 +33,7 @@ module Babelyoda::Commands
       if @should_load_spec && !babelfile?
         help! "Babelfile not found: '#{@babelfile}'. Use the init command to create one."
       end
-      Babelyoda::Logger.setup(@debug, verbose?)
+      Babelyoda::Logger.setup(@debug, verbose?, colorize_output?)
       load_specification if @should_load_spec
     end    
 
