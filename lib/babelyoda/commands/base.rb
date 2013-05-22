@@ -21,6 +21,7 @@ module Babelyoda::Commands
     def initialize(argv)
       @debug = argv.flag?('debug')
       @babelfile = argv.option('babelfile', Babelyoda::Specification::FILENAME)
+      @should_load_spec = true
       super
     end
 
@@ -29,19 +30,19 @@ module Babelyoda::Commands
       if self.class.command == Babelyoda::Commands::Base.command
         help!
       end
-      unless babelfile?
+      if @should_load_spec && !babelfile?
         help! "Babelfile not found: '#{@babelfile}'. Use the init command to create one."
       end
       Babelyoda::Logger.setup(@debug, verbose?)
-      load_specification
+      load_specification if @should_load_spec
     end    
 
-  private
-  
     def babelfile?
       File.exists? @babelfile
     end  
-    
+
+  private
+      
     def load_specification
       @spec = Babelyoda::Specification.load(@babelfile)
       unless @spec

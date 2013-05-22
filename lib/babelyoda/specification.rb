@@ -19,10 +19,10 @@ module Babelyoda
 
     FILENAME = 'Babelfile'
 
-    def self.generate_default_babelfile
+    def self.generate_default_babelfile(target_file_name = FILENAME)
       template_file_name = File.join(BABELYODA_PATH, 'templates', 'Babelfile.erb')
       template = File.read(template_file_name)
-      File.open(FILENAME, "w+") do |f|
+      File.open(target_file_name, "w+") do |f|
         f.write(ERB.new(template).result())
       end
     end

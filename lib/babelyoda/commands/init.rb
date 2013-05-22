@@ -12,24 +12,19 @@ module Babelyoda::Commands
     def initialize(argv)
       @force = argv.flag?('force')
       super
+      @should_load_spec = false
     end
 
     def validate!
       super
       if @force.nil? && babelfile?
-        help! "A Babelfile exists in the current folder. Use --force to overwrite."
+        help! "File exists: '#{@babelfile}'. Use --force to overwrite."
       end
     end    
     
     def run
-      Babelyoda::Specification.generate_default_babelfile
+      Babelyoda::Specification.generate_default_babelfile(@babelfile)
     end
     
-  private
-  
-    def babelfile?
-      File.exists? 'Babelfile'
-    end  
-      
   end
 end
