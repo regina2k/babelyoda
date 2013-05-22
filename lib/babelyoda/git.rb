@@ -14,7 +14,7 @@ module Babelyoda
 	    versions[filename] = git_ls_sha1(filename)
       should_add = !File.exist?(versions.filename)
 	    versions.save!
-	    $logger.info "[SHA1] #{@versions[filename]} <= #{filename}"
+	    Babelyoda.logger.info "[SHA1] #{@versions[filename]} <= #{filename}"
     end
 
     def fetch_versions!(*filenames, &block)
@@ -49,7 +49,7 @@ module Babelyoda
 
 		def check_requirements!
 		  unless clean?
-		    $logger.error "The working copy is not clean. Please commit your work before running Babelyoda tasks."
+		    Babelyoda.logger.error "The working copy is not clean. Please commit your work before running Babelyoda tasks."
 		    exit 1
 		  end
 		end
@@ -69,15 +69,15 @@ module Babelyoda
     def git_add!(filename)
 	    ncmd = ['git', 'add', filename]
 	    rc = Kernel.system(*ncmd)
-	    $logger.error "#{ncmd}" unless rc
+	    Babelyoda.logger.error "#{ncmd}" unless rc
     end
 
     def git_commit!(msg)
 	    ncmd = "git commit -m \"#{msg}\" 2>&1"
 	    output = `#{ncmd}`
-	    $logger.error ncmd unless $?
+	    Babelyoda.logger.error ncmd unless $?
 	    unless output.empty?
-	      $logger.info output.gsub!(/[\n\r]/, ' ')
+	      Babelyoda.logger.info output.gsub!(/[\n\r]/, ' ')
 	    end
     end
 
@@ -90,12 +90,12 @@ module Babelyoda
         end
         blob
       }
-	    $logger.error "#{ncmd}" unless $? == 0
+	    Babelyoda.logger.error "#{ncmd}" unless $? == 0
     end
 
     def git_ls_sha1(filename)
       matches = `git ls-files -s '#{filename}'`.match(/^\d{6}\s+([^\s]+)\s+.*$/)
-      $logger.error "Couldn't get SHA1 for: #{filename}" unless matches
+      Babelyoda.logger.error "Couldn't get SHA1 for: #{filename}" unless matches
       matches[1]
     end
 

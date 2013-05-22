@@ -27,11 +27,11 @@ module Babelyoda
         end
         count
       end
-      $logger.debug "=== DEBUG COUNTS FOR: #{name} ==="
+      Babelyoda.logger.debug "=== DEBUG COUNTS FOR: #{name} ==="
       languages.each_with_index do |language, index|
-        $logger.debug "#{language}: #{counts[index]}"
+        Babelyoda.logger.debug "#{language}: #{counts[index]}"
       end
-      $logger.debug "=== // DEBUG COUNTS FOR: #{name} ==="
+      Babelyoda.logger.debug "=== // DEBUG COUNTS FOR: #{name} ==="
     end
     
     def empty? ; keys.size == 0 ; end

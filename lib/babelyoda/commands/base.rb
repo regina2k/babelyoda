@@ -2,6 +2,7 @@ require 'awesome_print'
 require 'claide'
 require 'colored'
 
+require 'babelyoda/logger'
 require 'babelyoda/specification'
 
 module Babelyoda::Commands
@@ -13,7 +14,7 @@ module Babelyoda::Commands
     def self.options
       [
         ['--babelfile=FILE', "Use another file instead of the #{Babelyoda::Specification::FILENAME}"],
-        ['--debug', "Output detailed debug info."]
+        ['--debug', "Output detailed debug info"]
       ].concat(super)
     end
     
@@ -31,6 +32,7 @@ module Babelyoda::Commands
       unless babelfile?
         help! "Babelfile not found: '#{@babelfile}'. Use the init command to create one."
       end
+      Babelyoda::Logger.setup(@debug, verbose?)
       load_specification
     end    
 

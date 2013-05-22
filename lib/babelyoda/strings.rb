@@ -49,7 +49,7 @@ module Babelyoda
     end
     
     def read
-      $logger.debug "READING STRINGS FROM: #{@filename} WITH MODE: #{read_mode}"
+      Babelyoda.logger.debug "READING STRINGS FROM: #{@filename} WITH MODE: #{read_mode}"
       if File.exist?(@filename)
         File.open(@filename, read_mode) do |f|
           lexer = StringsLexer.new
@@ -63,7 +63,7 @@ module Babelyoda
     end      
 
     def save!
-      $logger.debug "WRITING STRINGS TO: #{filename} WITH MODE: wb:UTF-8"
+      Babelyoda.logger.debug "WRITING STRINGS TO: #{filename} WITH MODE: wb:UTF-8"
       FileUtils.mkdir_p(File.dirname(filename))
       File.open(filename, "wb:UTF-8") do |f|
         write_bom(f)

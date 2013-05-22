@@ -15,7 +15,7 @@ module Babelyoda
           output = `#{ncmd}`
           raise "genstrings failed: #{ncmd}#{output.empty? ? "" : " #{output}"}" unless $?
           unless output.empty?
-            $logger.warn output.gsub!(/[\n\r]/, ' ')
+            Babelyoda.logger.warn output.gsub!(/[\n\r]/, ' ')
           end
           Dir.glob(File.join(dir, '*.strings')).each do |strings_file|
             strings = Babelyoda::Strings.new(strings_file, language).read!

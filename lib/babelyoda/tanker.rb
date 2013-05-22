@@ -219,11 +219,11 @@ module Babelyoda
       res = conn.start do |http|
         http.request(req)
       end
-      $logger.debug "HTTP DEBUG: #{debug_log}"
+      Babelyoda.logger.debug "HTTP DEBUG: #{debug_log}"
       
-      $logger.debug "=== POST DATA ==========================================="
-      $logger.debug req.body
-      $logger.debug "=== / POST DATA ========================================="
+      Babelyoda.logger.debug "=== POST DATA ==========================================="
+      Babelyoda.logger.debug req.body
+      Babelyoda.logger.debug "=== / POST DATA ========================================="
       
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
@@ -247,7 +247,7 @@ module Babelyoda
       res = conn.start do |http|
         http.request(req)
       end
-      $logger.debug "HTTP DEBUG: #{debug_log}"
+      Babelyoda.logger.debug "HTTP DEBUG: #{debug_log}"
 
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
@@ -271,7 +271,7 @@ module Babelyoda
       res = conn.start do |http|
         http.request(req)
       end
-      $logger.debug "HTTP DEBUG: #{debug_log}"
+      Babelyoda.logger.debug "HTTP DEBUG: #{debug_log}"
 
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
